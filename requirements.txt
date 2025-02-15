@@ -1,4 +1,0 @@
-flask
-selenium
-pytesseract
-pillow
