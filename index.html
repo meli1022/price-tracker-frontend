@@ -27,7 +27,7 @@
             let targetPrice = document.getElementById("targetPrice").value;
             let email = document.getElementById("userEmail").value;
 
-            fetch("https://your-render-backend.onrender.com/track-price", {
+            fetch("https://price-tracker-backend-xkxo.onrender.com", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ url: url, targetPrice: targetPrice, email: email })
