@@ -21,23 +21,31 @@
 
     <script>
         document.getElementById("priceForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            
-            let url = document.getElementById("productUrl").value;
-            let targetPrice = document.getElementById("targetPrice").value;
-            let email = document.getElementById("userEmail").value;
+    event.preventDefault();
 
-            fetch("https://price-tracker-backend-xkxo.onrender.com/track-price", { 
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ url: url, targetPrice: targetPrice, email: email })
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("result").innerText = data.message;
-            })
-            .catch(error => console.error("Error:", error));
-        });
+    let url = document.getElementById("productUrl").value.trim(); // Remove spaces/newlines
+    let targetPrice = document.getElementById("targetPrice").value.trim();
+    let email = document.getElementById("userEmail").value.trim();
+
+    fetch("https://price-tracker-backend-xkxo.onrender.com/track-price", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ 
+            url: url, 
+            targetPrice: targetPrice, 
+            email: email 
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("✅ API Response:", data);
+        document.getElementById("result").innerText = data.message;
+    })
+    .catch(error => console.error("❌ Error:", error));
+});
+
     </script>
 </body>
 </html>
